@@ -1,32 +1,34 @@
 window.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("submit").addEventListener("click",function (event) {
-        let data = document.getElementById("result").value
-        requestFunction("POST","/test", data)
+        let data = document.getElementById("query_area").value
+        let sendData = {
+            data : data
+        }
+        console.log(sendData)
+        requestFunction("POST","/test", sendData,function (text) {
+            document.getElementById("result").innerText = text
+        })
     })
 
-    function requestFunction (method,url,data) {
-        const xhr = new XMLHttpRequest();
+    function requestFunction(method_type,url,send_data,callback) {
+        let xhr = new XMLHttpRequest();
+        let data = send_data ? send_data:{};
 
-        // 요청을 초기화 합니다.
-        xhr.open(method, url);
-
-        // onreadystatechange 이벤트를 이용해 요청에 대한 응답 결과를 처리합니다.
-        xhr.onreadystatechange = function (event) {
-            const { target } = event;
-
-            if (target.readyState === XMLHttpRequest.DONE) {
-                const { status } = target;
-
-                if (status === 0 || (status >= 200 && status < 400)) {
-                    return xhr.responseText
-                } else {
-                    // 에러가 발생한 경우
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    callback(xhr.responseText);
+                }
+                else {
+                    console.error(xhr.responseText);
                 }
             }
-        };
+        }
 
-        // 서버에 요청을 보냅니다.
-        xhr.send();
+        let sender = data;
+        xhr.open(method_type,url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(sender));
     }
 })

@@ -7,8 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/test',function (req,res,next) {
-  let result = ""
-
+  let result = req.body.data
   res.send(result)
 })
 
