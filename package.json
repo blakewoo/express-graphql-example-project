@@ -1,5 +1,5 @@
 {
-  "name": "express-graphql",
+  "name": "express-graphqlww",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.5.0",
     "http-errors": "~1.6.3",
     "mongoose": "^6.4.2",
     "morgan": "~1.9.1"
