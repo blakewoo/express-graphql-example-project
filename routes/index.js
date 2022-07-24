@@ -24,7 +24,7 @@ router.post('/test',function (req,res,next) {
 
 router.use('/graph',graphqlHTTP({
   schema: schema,
-  rootValue: root,
+  // rootValue: root,
   graphiql: true,
 }))
 

@@ -15,6 +15,17 @@ const typeDefs = `
     type Query {
         allUser: [User]
     }
+    
+    input UserInput {
+        firstName: String!
+        lastName: String!
+        phoneNumber: String!
+        joinPath: String!
+    }
+
+    type Mutation {
+        createUser(input: UserInput): User
+    }
 `;
 
 const schema = test.makeExecutableSchema({
