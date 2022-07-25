@@ -6,4 +6,4 @@ const userSchema = new mongoose.Schema({
     usedCount:Number
 });
 
-module.exports = mongoose.model('accountInfo', userSchema);
+module.exports = mongoose.model('paymentSetting', userSchema);

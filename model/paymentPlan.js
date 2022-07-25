@@ -8,4 +8,4 @@ const userSchema = new mongoose.Schema({
     isForthFunctionOpen : Boolean,
 });
 
-module.exports = mongoose.model('accountInfo', userSchema);
+module.exports = mongoose.model('paymentPlan', userSchema);
