@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+#query_area{
+  width: 350px;
+  height: 200px;
+}
+
+#result{
+  width: 350px;
+  height: 200px;
+}
+#userTable{
+  border: 1px solid #222222;
+}
+
+.functionDivider{
+  border: 1px solid #222222;
+  margin-bottom: 30px;
+}

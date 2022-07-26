@@ -2,6 +2,16 @@ let test =require('graphql-tools');
 let resolvers =require('../resolver/user_resolver');
 
 const typeDefs = `
+    type Query {
+        allUser: [User]
+    }
+    
+    type Mutation {
+        createUser(input: UserInput): User
+        updateUser(updateValue: modifyUser): User
+        deleteUser(deleteValue: deleteUser): Boolean
+    }
+    
     type User {
         _id: ID!
         firstName: String!
@@ -13,11 +23,6 @@ const typeDefs = `
         paymentSetting: ID
     }
 
-    type Query {
-        allUser: [User]
-        User(firstName:String!):User
-        getPaymentPlan(input: UserInput):User
-    }
    
     input UserInput {
         firstName: String!
@@ -25,29 +30,6 @@ const typeDefs = `
         email:String!
         phoneNumber: String
         joinPath: String
-    }
-    
-    type PaymentPlan{
-        name: String!
-        monthlyCostPerPerson : Int!
-        isFirstFunctionOpen : Boolean!
-        isSecondFunctionOpen : Boolean!
-        isThirdFunctionOpen : Boolean!
-        isForthFunctionOpen : Boolean!
-    }
-    
-    input PaymentPlanInput {
-        name: String
-        monthlyCostPerPerson : Int
-        isFirstFunctionOpen : Boolean
-        isSecondFunctionOpen : Boolean
-        isThirdFunctionOpen : Boolean
-        isForthFunctionOpen : Boolean
-    }
-    
-    input name{
-        firstName: String
-        lastName: String
     }
     
     input deleteUser {
@@ -60,14 +42,6 @@ const typeDefs = `
         email:String
         phoneNumber: String
         joinPath: String
-    }
-
-    type Mutation {
-        createUser(input: UserInput): User
-        updateUser(updateValue: modifyUser): User
-        deleteUser(deleteValue: deleteUser): Boolean
-        createPaymentPlan(input:PaymentPlanInput) : PaymentPlan
-        
     }
 `;
 

@@ -2,28 +2,26 @@ var express = require('express');
 var router = express.Router();
 var {graphqlHTTP} = require('express-graphql');
 var { buildSchema } = require('graphql');
-var schema = require('../schema/user')
-
-// var schema = buildSchema(`
-//   type Query {
-//     hello: String
-//   }
-// `);
-
-var root = { hello: () => 'Hello world!' };
+var testSchema = require('../schema/test')
+var userSchema = require('../schema/user')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/test',function (req,res,next) {
-  let result = req.body.data
-  res.send(result)
-})
+router.use('/user',graphqlHTTP({
+  schema: userSchema,
+  graphiql: false,
+}))
+
+router.use('/test',graphqlHTTP({
+  schema: testSchema,
+  graphiql: false,
+}))
 
 router.use('/graph',graphqlHTTP({
-  schema: schema,
+  schema: testSchema,
   // rootValue: root,
   graphiql: true,
 }))

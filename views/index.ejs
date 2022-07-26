@@ -2,19 +2,73 @@
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/publicFunction.js"></script>
     <script src="/javascripts/main.js"></script>
   </head>
   <body>
   <div>
-    <label>쿼리 테스트용 예제 프로젝트</label>
-  </div>
-  <label>쿼리 입력 창</label>
-  <div>
-      <textarea id="query_area"></textarea>
-  </div>
-  <input type="button" id="submit" value="테스트"/>
-  <div>
+    <div>
+      <label>쿼리 테스트용 예제 프로젝트</label>
+    </div>
+    <label>쿼리 입력 창</label>
+
+    <textarea id="query_area"></textarea>
+
+    <input type="button" id="submit" value="테스트"/>
+
     <textarea readonly id="result"> </textarea>
+
+  </div>
+<!-- 사용자 조회 부분-->
+  <div class="functionDivider">
+    <label>사용자 목록</label> <input type="button" id="userReadRenewButton" value="새로 고침">
+    <table id="userTable">
+      <thead>
+      <tr>
+        <th>이메일</th> <th>이름</th> <th>성</th> <th>전화번호</th> <th>가입경로</th>
+      </tr>
+      </thead>
+      <tbody id="userTableBody">
+
+      </tbody>
+    </table>
+  </div>
+<!--사용자 추가 부분-->
+  <div class="functionDivider">
+    <input type="button" id="userCreateButton" value="요청">
+    <label>사용자 추가</label>
+    <label>이메일</label>
+    <input id="create_email">
+    <label>이름</label>
+    <input id="create_firstName">
+    <label>성</label>
+    <input id="create_lastName">
+    <label>전화번호</label>
+    <input id="create_phoneNumber">
+    <label>가입경로</label>
+    <input id="create_joinPath">
+  </div>
+<!-- 사용자 변경 부분 -->
+  <div class="functionDivider">
+    <input type="button" id="userModifyButton" value="요청">
+    <label>사용자 변경</label>
+    <label>이메일</label>
+    <input id="modify_email">
+    <label>이름</label>
+    <input id="modify_firstName">
+    <label>성</label>
+    <input id="modify_lastName">
+    <label>전화번호</label>
+    <input id="modify_phoneNumber">
+    <label>가입경로</label>
+    <input id="modify_joinPath">
+  </div>
+<!-- 사용자 삭제 부분 -->
+  <div class="functionDivider">
+    <input type="button" id="userDeleteButton" value="요청">
+    <label>사용자 삭제</label>
+    <label>이메일</label>
+    <input id="delete_email">
   </div>
   </body>
 </html>
