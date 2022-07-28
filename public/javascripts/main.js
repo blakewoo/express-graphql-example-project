@@ -6,13 +6,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if(reg.test(data)) {
             mutationRequset("/test",data,function (text) {
-                console.log(JSON.parse(text))
                 document.getElementById("result").innerText = JSON.parse(text).data.allUser[0].firstName
             })
         }
         else {
             queryRequest("/test",data,function (text) {
-                console.log(JSON.parse(text))
                 document.getElementById("result").innerText = JSON.parse(text).data.allUser[0].firstName
             })
         }
@@ -63,7 +61,41 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     document.getElementById("userCreateButton").addEventListener("click",function (event) {
-        alert("사용자 추가")
+        let firstName = document.getElementById("create_firstName").value
+        let lastName = document.getElementById("create_lastName").value
+        let email = document.getElementById("create_email").value
+        let phoneNumber = document.getElementById("create_phoneNumber").value
+        let joinPath = document.getElementById("create_joinPath").value
+
+        let userObj = "" +
+            "firstName:\""+firstName+"\","+
+            "lastName:\""+lastName+"\","+
+            "email:\""+email+"\""
+
+        if(phoneNumber) {
+            userObj += ",phoneNumber:\""+phoneNumber+"\""
+        }
+
+        if(joinPath) {
+            userObj += ",joinPath:\""+joinPath+"\""
+        }
+
+        let queryString = "mutation \{" +
+            "createUser(input:{" +userObj+
+            "})"+
+            "\{" +
+            "email " +
+            "firstName " +
+            "lastName " +
+            "phoneNumber " +
+            "joinPath " +
+            "\}" +
+            "\}"
+
+        console.log(queryString)
+        mutationRequset("/user",queryString,function (text) {
+            alert("input complete")
+        })
     })
     document.getElementById("userModifyButton").addEventListener("click",function (event) {
         alert("사용자 변경")
