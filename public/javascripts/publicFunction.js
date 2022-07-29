@@ -26,7 +26,7 @@ function requestFunction(method_type,url,send_data,callback) {
     }
     else {
         xhr.open(method_type,url);
-        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
         xhr.send(JSON.stringify(sender));
     }
 }

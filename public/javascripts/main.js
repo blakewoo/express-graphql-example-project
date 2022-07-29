@@ -80,29 +80,88 @@ window.addEventListener('DOMContentLoaded', () => {
             userObj += ",joinPath:\""+joinPath+"\""
         }
 
-        let queryString = "mutation \{" +
-            "createUser(input:{" +userObj+
-            "})"+
-            "\{" +
-            "email " +
-            "firstName " +
-            "lastName " +
-            "phoneNumber " +
-            "joinPath " +
-            "\}" +
-            "\}"
+        let queryString = `
+        mutation {
+            createUser(input:{`+userObj+`}
+            ){
+            email
+            firstName
+            lastName
+            phoneNumber
+            joinPath
+            }}
+        `
 
-        console.log(queryString)
-        mutationRequset("/user",queryString,function (text) {
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/user",jsonBody,function (text) {
             alert("input complete")
         })
     })
     document.getElementById("userModifyButton").addEventListener("click",function (event) {
-        alert("사용자 변경")
+        let firstName = document.getElementById("modify_firstName").value
+        let lastName = document.getElementById("modify_lastName").value
+        let email = document.getElementById("modify_email").value
+        let phoneNumber = document.getElementById("modify_phoneNumber").value
+        let joinPath = document.getElementById("modify_joinPath").value
+
+        let userObj = "" +
+            "firstName:\""+firstName+"\","+
+            "lastName:\""+lastName+"\","+
+            "email:\""+email+"\""
+
+        if(phoneNumber) {
+            userObj += ",phoneNumber:\""+phoneNumber+"\""
+        }
+
+        if(joinPath) {
+            userObj += ",joinPath:\""+joinPath+"\""
+        }
+
+        let queryString = `
+        mutation {
+            updateUser(updateValue:{`+userObj+`}
+            ){
+            email
+            firstName
+            lastName
+            phoneNumber
+            joinPath
+            }}
+        `
+
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/user",jsonBody,function (text) {
+            alert("update complete")
+        })
     })
     document.getElementById("userDeleteButton").addEventListener("click",function (event) {
-        alert("사용자 삭제")
-    })
+        let email = document.getElementById("delete_email").value
 
+        let userObj = "" +
+            "email:\""+email+"\""
+
+        let queryString = `
+        mutation {
+            deleteUser(deleteValue:{`+userObj+`}
+            )}
+        `
+
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/user",jsonBody,function (text) {
+            alert("delete complete")
+        })
+    })
 
 })
