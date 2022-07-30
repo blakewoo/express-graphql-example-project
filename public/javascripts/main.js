@@ -164,4 +164,94 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+
+    document.getElementById("paymentPlanReadRenewButton").addEventListener("click",function (event) {
+        let queryString = "\{" +
+            "allPlan \{" +
+            "name "+
+            "monthlyCostPerPerson "+
+            "isFirstFunctionOpen "+
+            "isSecondFunctionOpen "+
+            "isThirdFunctionOpen "+
+            "isForthFunctionOpen "+
+            "\}" +
+            "\}"
+
+        queryRequest("/paymentPlan",queryString,function (text) {
+            let targetTable = document.getElementById("paymentPlanTableBody")
+            targetTable.innerHTML = ""
+
+            let rawData = JSON.parse(text)
+            let Data =rawData.data.allPlan
+            let tempTable = document.createDocumentFragment()
+            for(let i=0;i<Data.length;i++) {
+                let temp = document.createElement("tr")
+                let nameTd = document.createElement("td")
+                let monthlyCostPerPersonTd = document.createElement("td")
+                let isFirstFunctionOpenTd = document.createElement("td")
+                let isSecondFunctionOpenTd = document.createElement("td")
+                let isThirdFunctionOpenTd = document.createElement("td")
+                let isForthFunctionOpenTd = document.createElement("td")
+
+                nameTd.innerText = Data[i].name;
+                monthlyCostPerPersonTd.innerText = Data[i].monthlyCostPerPerson;
+                isFirstFunctionOpenTd.innerText = Data[i].isFirstFunctionOpen;
+                isSecondFunctionOpenTd.innerText = Data[i].isSecondFunctionOpen;
+                isThirdFunctionOpenTd.innerText = Data[i].isThirdFunctionOpen;
+                isForthFunctionOpenTd.innerText = Data[i].isForthFunctionOpen;
+
+                temp.appendChild(nameTd)
+                temp.appendChild(monthlyCostPerPersonTd)
+                temp.appendChild(isFirstFunctionOpenTd)
+                temp.appendChild(isSecondFunctionOpenTd)
+                temp.appendChild(isThirdFunctionOpenTd)
+                temp.appendChild(isForthFunctionOpenTd)
+                targetTable.appendChild(temp)
+            }
+
+            targetTable.appendChild(tempTable)
+        })
+    })
+
+    // document.getElementById("").addEventListener("click",function (event) {
+    //     let firstName = document.getElementById("create_firstName").value
+    //     let lastName = document.getElementById("create_lastName").value
+    //     let email = document.getElementById("create_email").value
+    //     let phoneNumber = document.getElementById("create_phoneNumber").value
+    //     let joinPath = document.getElementById("create_joinPath").value
+    //
+    //     let userObj = "" +
+    //         "firstName:\""+firstName+"\","+
+    //         "lastName:\""+lastName+"\","+
+    //         "email:\""+email+"\""
+    //
+    //     if(phoneNumber) {
+    //         userObj += ",phoneNumber:\""+phoneNumber+"\""
+    //     }
+    //
+    //     if(joinPath) {
+    //         userObj += ",joinPath:\""+joinPath+"\""
+    //     }
+    //
+    //     let queryString = `
+    //     mutation {
+    //         createUser(input:{`+userObj+`}
+    //         ){
+    //         email
+    //         firstName
+    //         lastName
+    //         phoneNumber
+    //         joinPath
+    //         }}
+    //     `
+    //
+    //     let jsonBody = {
+    //         "query": queryString,
+    //         "variables":null
+    //     }
+    //
+    //     mutationRequset("/user",jsonBody,function (text) {
+    //         alert("input complete")
+    //     })
+    // })
 })
