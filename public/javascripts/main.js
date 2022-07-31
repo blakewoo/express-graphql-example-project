@@ -213,45 +213,43 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    // document.getElementById("").addEventListener("click",function (event) {
-    //     let firstName = document.getElementById("create_firstName").value
-    //     let lastName = document.getElementById("create_lastName").value
-    //     let email = document.getElementById("create_email").value
-    //     let phoneNumber = document.getElementById("create_phoneNumber").value
-    //     let joinPath = document.getElementById("create_joinPath").value
-    //
-    //     let userObj = "" +
-    //         "firstName:\""+firstName+"\","+
-    //         "lastName:\""+lastName+"\","+
-    //         "email:\""+email+"\""
-    //
-    //     if(phoneNumber) {
-    //         userObj += ",phoneNumber:\""+phoneNumber+"\""
-    //     }
-    //
-    //     if(joinPath) {
-    //         userObj += ",joinPath:\""+joinPath+"\""
-    //     }
-    //
-    //     let queryString = `
-    //     mutation {
-    //         createUser(input:{`+userObj+`}
-    //         ){
-    //         email
-    //         firstName
-    //         lastName
-    //         phoneNumber
-    //         joinPath
-    //         }}
-    //     `
-    //
-    //     let jsonBody = {
-    //         "query": queryString,
-    //         "variables":null
-    //     }
-    //
-    //     mutationRequset("/user",jsonBody,function (text) {
-    //         alert("input complete")
-    //     })
-    // })
+    document.getElementById("planCreateButton").addEventListener("click",function (event) {
+        let name = document.getElementById("targetPlanName").value
+        let count = document.getElementById("personCount").value
+        let firstFun = document.getElementById("firstFunctionFlag").value
+        let secondFunc = document.getElementById("secondFunctionFlag").value
+        let thirdFunc = document.getElementById("thirdFunctionFlag").value
+        let forthFunc = document.getElementById("forthFunctionFlag").value
+
+        let planObj = "" +
+            "name:\""+name+"\","+
+            "monthlyCostPerPerson:"+count+","+
+            "isFirstFunctionOpen:"+firstFun+","+
+            "isSecondFunctionOpen:"+secondFunc+","+
+            "isThirdFunctionOpen:"+thirdFunc+","+
+            "isForthFunctionOpen:"+forthFunc+""
+
+
+        let queryString = `
+        mutation {
+            createPlan(input:{`+planObj+`}
+            ){
+                name
+                monthlyCostPerPerson
+                isFirstFunctionOpen
+                isSecondFunctionOpen
+                isThirdFunctionOpen
+                isForthFunctionOpen
+            }}
+        `
+
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/paymentPlan",jsonBody,function (text) {
+            alert("modify complete")
+        })
+    })
 })
