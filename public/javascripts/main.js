@@ -249,6 +249,46 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         mutationRequset("/paymentPlan",jsonBody,function (text) {
+            alert("create complete")
+        })
+    })
+
+    document.getElementById("planModifyButton").addEventListener("click",function (event) {
+        let name = document.getElementById("modifyTargetPlanName").value
+        let count = document.getElementById("modifyPersonCount").value
+        let firstFun = document.getElementById("modifyFirstFunctionFlag").value
+        let secondFunc = document.getElementById("modifySecondFunctionFlag").value
+        let thirdFunc = document.getElementById("modifyThirdFunctionFlag").value
+        let forthFunc = document.getElementById("modifyForthFunctionFlag").value
+
+        let planObj = "" +
+            "name:\""+name+"\","+
+            "monthlyCostPerPerson:"+count+","+
+            "isFirstFunctionOpen:"+firstFun+","+
+            "isSecondFunctionOpen:"+secondFunc+","+
+            "isThirdFunctionOpen:"+thirdFunc+","+
+            "isForthFunctionOpen:"+forthFunc+""
+
+
+        let queryString = `
+        mutation {
+            updatePlan(updateValue:{`+planObj+`}
+            ){
+                name
+                monthlyCostPerPerson
+                isFirstFunctionOpen
+                isSecondFunctionOpen
+                isThirdFunctionOpen
+                isForthFunctionOpen
+            }}
+        `
+
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/paymentPlan",jsonBody,function (text) {
             alert("modify complete")
         })
     })
