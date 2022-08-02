@@ -292,4 +292,25 @@ window.addEventListener('DOMContentLoaded', () => {
             alert("modify complete")
         })
     })
+
+    document.getElementById("planDeleteButton").addEventListener("click",function (event) {
+        let name = document.getElementById("deleteTargetPlanName").value
+
+        let planObj = "" +
+            "name:\""+name+"\""
+
+
+        let queryString = `
+        mutation {
+            deletePlan(deleteValue:{`+planObj+`})}`
+
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/paymentPlan",jsonBody,function (text) {
+            alert("delete complete")
+        })
+    })
 })
