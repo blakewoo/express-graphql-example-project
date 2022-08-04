@@ -10,6 +10,7 @@ const typeDefs = `
         createUser(input: UserInput): User
         updateUser(updateValue: modifyUser): User
         deleteUser(deleteValue: deleteUser): Boolean
+        planToUser(mappingValue: planWithUser): Boolean
     }
     
     type User {
@@ -42,6 +43,11 @@ const typeDefs = `
         email:String
         phoneNumber: String
         joinPath: String
+    }
+    
+    input planWithUser{
+         email:String!
+         name: String!
     }
 `;
 

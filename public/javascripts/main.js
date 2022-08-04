@@ -41,18 +41,21 @@ window.addEventListener('DOMContentLoaded', () => {
                 let lastNameTd = document.createElement("td")
                 let phoneNumberTd = document.createElement("td")
                 let joinPathTd = document.createElement("td")
+                let paymentPlanTd = document.createElement("td")
 
                 emailTd.innerText = Data[i].email;
                 firstNameTd.innerText = Data[i].firstName;
                 lastNameTd.innerText = Data[i].lastName;
                 phoneNumberTd.innerText = Data[i].phoneNumber;
                 joinPathTd.innerText = Data[i].joinPath;
+                paymentPlanTd.innerText = Data[i].paymentPlan?Data[i].paymentPlan:"없음";
 
                 temp.appendChild(emailTd)
                 temp.appendChild(firstNameTd)
                 temp.appendChild(lastNameTd)
                 temp.appendChild(phoneNumberTd)
                 temp.appendChild(joinPathTd)
+                temp.appendChild(paymentPlanTd)
                 targetTable.appendChild(temp)
             }
 
@@ -311,6 +314,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
         mutationRequset("/paymentPlan",jsonBody,function (text) {
             alert("delete complete")
+        })
+    })
+
+    document.getElementById("planToUserButton").addEventListener("click",function (event) {
+        let userEmail = document.getElementById("pointTargetUserEmail").value
+        let planName = document.getElementById("pointTargetPlanName").value
+
+        let planObj = "" +
+            "email:\""+userEmail+"\"," +
+            "name:\""+planName+"\""
+
+        let queryString = `
+        mutation {
+            planToUser(mappingValue:{`+planObj+`})}`
+
+        let jsonBody = {
+            "query": queryString,
+            "variables":null
+        }
+
+        mutationRequset("/user",jsonBody,function (text) {
+            alert("mapping complete")
         })
     })
 })

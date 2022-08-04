@@ -24,7 +24,7 @@
     <table id="userTable">
       <thead>
       <tr>
-        <th>이메일</th> <th>이름</th> <th>성</th> <th>전화번호</th> <th>가입경로</th>
+        <th>이메일</th> <th>이름</th> <th>성</th> <th>전화번호</th> <th>가입경로</th> <th>요금제</th>
       </tr>
       </thead>
       <tbody id="userTableBody">
@@ -147,6 +147,15 @@
     <input type="button" id="planDeleteButton" value="요청"> <br>
     <label>대상 요금제</label>
     <input id="deleteTargetPlanName">
+  </div>
+
+  <!-- 요금제 지정 -->
+  <div class="functionDivider">
+    <label>요금제 지정</label> <input type="button" id="planToUserButton" value="요청"> <br>
+    <label>지정할 인원 이메일</label>
+    <input id="pointTargetUserEmail">
+    <label>지정할 요금제</label>
+    <input id="pointTargetPlanName">
   </div>
   </body>
 </html>
