@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 lastNameTd.innerText = Data[i].lastName;
                 phoneNumberTd.innerText = Data[i].phoneNumber;
                 joinPathTd.innerText = Data[i].joinPath;
-                paymentPlanTd.innerText = Data[i].paymentPlan?Data[i].paymentPlan:"없음";
+                paymentPlanTd.innerText = Data[i].paymentPlan ? Data[i].paymentPlan:"없음";
 
                 temp.appendChild(emailTd)
                 temp.appendChild(firstNameTd)

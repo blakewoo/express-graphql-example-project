@@ -20,7 +20,7 @@ const typeDefs = `
         email:String!
         phoneNumber: String
         joinPath: String
-        paymentPlan: ID
+        paymentPlan: String
         paymentSetting: ID
     }
 
@@ -40,7 +40,7 @@ const typeDefs = `
     input modifyUser{
         firstName: String
         lastName: String
-        email:String
+        email: String
         phoneNumber: String
         joinPath: String
     }

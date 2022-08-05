@@ -4,25 +4,39 @@ let Plan = require('../model/paymentPlan')
 const resolvers = {
     Query: {
         async allUser() {
-            let users = await User.find().lean();
-            // let planMap = new Map()
-            // let queryArr = []
-            // for(let i=0;i<users.length;i++) {
-            //     if(users[i].paymentPlan) {
-            //         queryArr.push({_id:users[i].paymentPlan})
-            //     }
-            // }
-            // let payplan = await Plan.find({$or:queryArr})
-            // for(let i=0;i<payplan.length;i++) {
-            //     planMap.set(payplan[i]._id.toString(),payplan[i])
-            // }
-            //
-            // for(let i=0;i<users.length;i++) {
-            //     if(users[i].paymentPlan) {
-            //         users[i].paymentPlan = planMap.get(users[i].paymentPlan.toString()).name
-            //     }
-            // }
-            return users
+            try{
+                let users = await User.find().lean();
+                let planMap = new Map()
+                let queryArr = []
+                for(let i=0;i<users.length;i++) {
+                    if(users[i].paymentPlan) {
+                        queryArr.push({_id:users[i].paymentPlan})
+                    }
+                }
+                let payplan = await Plan.find({$or:queryArr})
+                for(let i=0;i<payplan.length;i++) {
+                    planMap.set(payplan[i]._id.toString(),payplan[i])
+                }
+
+                for(let i=0;i<users.length;i++) {
+                    if(users[i].paymentPlan) {
+                        users[i].paymentPlan = planMap.get(users[i].paymentPlan.toString()).name
+                    }
+                }
+                // console.log(users)
+                // for(let i=0;i<users.length;i++) {
+                //     users[i]._id = users[i]._id.toString()
+                //     if(users[i].paymentPlan) {
+                //         users[i].paymentPlan = users[i].paymentPlan.toString()
+                //     }
+                // }
+                console.log(users)
+                return users
+            }
+            catch(e) {
+                console.log(e)
+                return []
+            }
         }
     },
     Mutation: {

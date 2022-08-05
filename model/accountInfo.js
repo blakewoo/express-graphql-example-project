@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
-    phoneNumber: Number,
+    phoneNumber: String,
     email:String,
     joinPath: String,
     paymentPlan: mongoose.Schema.Types.ObjectId,
