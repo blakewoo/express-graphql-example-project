@@ -17,15 +17,20 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     document.getElementById("userReadRenewButton").addEventListener("click",function (event) {
-        let queryString = "\{" +
-            "allUser \{" +
-            "email " +
-            "firstName " +
-            "lastName " +
-            "phoneNumber " +
-            "joinPath " +
-            "\}" +
-            "\}"
+        let queryString = `
+        {
+            allUser {
+                email
+                firstName
+                lastName
+                phoneNumber
+                joinPath
+                paymentPlan{
+                    name
+                }
+            }
+        }
+        `
 
         queryRequest("/user",queryString,function (text) {
             let targetTable = document.getElementById("userTableBody")
@@ -43,12 +48,14 @@ window.addEventListener('DOMContentLoaded', () => {
                 let joinPathTd = document.createElement("td")
                 let paymentPlanTd = document.createElement("td")
 
+                console.log(Data)
+
                 emailTd.innerText = Data[i].email;
                 firstNameTd.innerText = Data[i].firstName;
                 lastNameTd.innerText = Data[i].lastName;
                 phoneNumberTd.innerText = Data[i].phoneNumber;
                 joinPathTd.innerText = Data[i].joinPath;
-                paymentPlanTd.innerText = Data[i].paymentPlan ? Data[i].paymentPlan:"없음";
+                paymentPlanTd.innerText = Data[i].paymentPlan ? Data[i].paymentPlan.name:"없음";
 
                 temp.appendChild(emailTd)
                 temp.appendChild(firstNameTd)

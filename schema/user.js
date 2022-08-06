@@ -20,8 +20,18 @@ const typeDefs = `
         email:String!
         phoneNumber: String
         joinPath: String
-        paymentPlan: String
+        paymentPlan: paymentPlan
         paymentSetting: ID
+    }
+    
+    type paymentPlan {
+        _id: ID
+        name: String
+        monthlyCostPerPerson : Int
+        isFirstFunctionOpen : Boolean
+        isSecondFunctionOpen : Boolean
+        isThirdFunctionOpen : Boolean
+        isForthFunctionOpen : Boolean
     }
 
    

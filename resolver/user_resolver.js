@@ -20,16 +20,12 @@ const resolvers = {
 
                 for(let i=0;i<users.length;i++) {
                     if(users[i].paymentPlan) {
-                        users[i].paymentPlan = planMap.get(users[i].paymentPlan.toString()).name
+                        users[i].paymentPlan = planMap.get(users[i].paymentPlan.toString())
+                    }
+                    else {
+                        users[i].paymentPlan = null
                     }
                 }
-                // console.log(users)
-                // for(let i=0;i<users.length;i++) {
-                //     users[i]._id = users[i]._id.toString()
-                //     if(users[i].paymentPlan) {
-                //         users[i].paymentPlan = users[i].paymentPlan.toString()
-                //     }
-                // }
                 console.log(users)
                 return users
             }
