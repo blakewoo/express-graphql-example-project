@@ -1,5 +1,6 @@
 let User = require('../model/accountInfo');
-let Plan = require('../model/paymentPlan')
+let Plan = require('../model/paymentPlan');
+let Setting = require('../model/acocuntPaymentSetting')
 
 const resolvers = {
     Query: {
@@ -80,8 +81,17 @@ const resolvers = {
 
         async planToUser(root,{mappingValue}) {
             try{
+                let prevPaymentSetting = User.findOne({email:mappingValue.email})
                 let planTarget = await Plan.findOne({name:mappingValue.name})
-                await User.updateOne({email:mappingValue.email},{paymentPlan:planTarget._id})
+                if(prevPaymentSetting.paymentSetting) {
+                    let prevSetting = Setting.findOne({_id:prevPaymentSetting.paymentSetting})
+                    await Setting.updateOne({_id:prevPaymentSetting.paymentSetting},{previousPaidDate:prevSetting.PaidDate,PaidDate:new Date()})
+                    await User.updateOne({email:mappingValue.email},{paymentPlan:planTarget._id})
+                }
+                else{
+                    let newSetting = Setting.create({previousPaidDate:null,PaidDate:new Date()})
+                    await User.updateOne({email:mappingValue.email},{paymentPlan:planTarget._id,paymentSetting:newSetting._id})
+                }
                 return true
             }
             catch(e) {
