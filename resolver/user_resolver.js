@@ -14,7 +14,12 @@ const resolvers = {
                         queryArr.push({_id:users[i].paymentPlan})
                     }
                 }
-                let payplan = await Plan.find({$or:queryArr})
+
+                let payplan = []
+                if(queryArr.length !== 0) {
+                    payplan = await Plan.find({$or:queryArr})
+                }
+
                 for(let i=0;i<payplan.length;i++) {
                     planMap.set(payplan[i]._id.toString(),payplan[i])
                 }
@@ -27,7 +32,6 @@ const resolvers = {
                         users[i].paymentPlan = null
                     }
                 }
-                console.log(users)
                 return users
             }
             catch(e) {
@@ -89,7 +93,7 @@ const resolvers = {
                     await User.updateOne({email:mappingValue.email},{paymentPlan:planTarget._id})
                 }
                 else{
-                    let newSetting = Setting.create({previousPaidDate:null,PaidDate:new Date()})
+                    let newSetting = await Setting.create({previousPaidDate:null,PaidDate:new Date()})
                     await User.updateOne({email:mappingValue.email},{paymentPlan:planTarget._id,paymentSetting:newSetting._id})
                 }
                 return true
