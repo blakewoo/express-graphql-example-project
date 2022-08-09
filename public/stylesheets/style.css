@@ -1,6 +1,8 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #10ff00;
+  background: black;
 }
 
 a {
@@ -17,10 +19,62 @@ a {
   height: 200px;
 }
 #userTable{
-  border: 1px solid #222222;
+  border:solid 1px #10ff00;
+}
+
+#paymentPlanTable{
+  border:solid 1px #10ff00;
 }
 
 .functionDivider{
-  border: 1px solid #222222;
   margin-bottom: 30px;
+}
+
+input{
+  background: black;
+  color:#10ff00;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 1px #10ff00;
+}
+
+input:focus{
+  outline: solid 1px #10ff00;
+}
+
+input[type=button]{
+  background: black;
+  color:#10ff00;
+  border-top: solid 1px #10ff00;
+  border-left: solid 1px #10ff00;
+  border-right: solid 1px #10ff00;
+  border-bottom: solid 1px #10ff00;
+}
+
+input[type=button]:hover{
+  background: #10ff00;
+  color:black;
+  cursor:pointer;
+  font-weight: bold;
+}
+
+
+
+textarea{
+  background: black;
+  color:#10ff00;
+  border-top: solid 1px #10ff00;
+  border-left: solid 1px #10ff00;
+  border-right: solid 1px #10ff00;
+  border-bottom: solid 1px #10ff00;
+}
+
+select{
+  background: black;
+  color:#10ff00;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 1px #10ff00;
 }
