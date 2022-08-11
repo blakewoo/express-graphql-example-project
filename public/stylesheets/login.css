@@ -1,0 +1,46 @@
+html {
+    background:black;
+    color: #10ff00;
+}
+
+input{
+    background: black;
+    color:#10ff00;
+    border-top: solid 1px #10ff00;
+    border-left: solid 1px #10ff00;
+    border-right: solid 1px #10ff00;
+    border-bottom: solid 1px #10ff00;
+}
+
+input:focus{
+    outline: solid 1px #10ff00;
+}
+
+input[type=button]{
+    background: black;
+    color:#10ff00;
+    border-top: solid 1px #10ff00;
+    border-left: solid 1px #10ff00;
+    border-right: solid 1px #10ff00;
+    border-bottom: solid 1px #10ff00;
+}
+
+input[type=button]:hover{
+    background: #10ff00;
+    color:black;
+    cursor:pointer;
+    font-weight: bold;
+}
+
+.loginDiv{
+    border: #10ff00 1px solid;
+    width: 500px;
+    height: 120px;
+    position:absolute;
+    left: calc(50% - 250px);
+    top:calc(50% - 60px)
+}
+
+.loginLabel{
+    width: 100px;
+}
