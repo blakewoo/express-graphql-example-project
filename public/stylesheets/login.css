@@ -34,13 +34,36 @@ input[type=button]:hover{
 
 .loginDiv{
     border: #10ff00 1px solid;
-    width: 500px;
-    height: 120px;
+    background: black;
+    width: 300px;
+    height: 220px;
     position:absolute;
-    left: calc(50% - 250px);
-    top:calc(50% - 60px)
+    left: calc(50% - 150px);
+    top:calc(50% - 110px);
 }
 
 .loginLabel{
-    width: 100px;
+    width: 42px;
+    display: inline-block;
+}
+
+.matrix_background{
+    display: inline-block;
+    width: 10px;
+    height: 900px;
+    overflow: hidden;
+}
+
+canvas {display:block;}
+
+.innerDiv{
+    width: 100%;
+    text-align: center;
+}
+.marginTop30px {
+    margin-top: 30px;
+}
+
+.fixedInputWidth {
+    width: 120px;
 }
