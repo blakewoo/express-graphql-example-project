@@ -1,8 +1,40 @@
 window.addEventListener('DOMContentLoaded', () => {
     matrixBackGround("background_matrix")
-
+    document.getElementById("loginButton").addEventListener("click",loginButtonEvent)
+    document.getElementById("signupButton").addEventListener("click",signupButtonEvent)
 })
 
+function loginButtonEvent(event) {
+    let userObj = "" +
+        "id:\""+document.getElementById("loginID").value+"\","+
+        "password:\""+document.getElementById("loginPassword").value+"\""
+
+
+    let loginQuery = `
+        mutation {
+            verifyAdminUser(verifyTarget:{`+userObj+`})
+        }
+    `
+
+    let jsonBody = {
+        "query": loginQuery,
+        "variables":null
+    }
+
+    mutationRequset("/user",jsonBody,function (value){
+        // if(value) {
+        //     location.href = location.protocol+"//"+location.host+"/login"
+        // }
+        // else {
+        //     // 가입 안되었다고 알리는 알림!
+        // }
+        alert("verify response!")
+    })
+}
+
+function signupButtonEvent(event) {
+    location.href = location.protocol + "//" + location.host +"/signup"
+}
 
 function matrixBackGround(id) {
     // geting canvas by Boujjou Achraf

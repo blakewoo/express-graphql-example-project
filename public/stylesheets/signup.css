@@ -3,10 +3,6 @@ html {
     color: #10ff00;
 }
 
-body{
-    margin:0;
-}
-
 input{
     background: black;
     color:#10ff00;
@@ -47,19 +43,8 @@ input[type=button]:hover{
 }
 
 .loginLabel{
-    width: 42px;
+    width: 50px;
     display: inline-block;
-}
-
-.matrix_background{
-    display: inline-block;
-    width: 10px;
-    height: 900px;
-    overflow: hidden;
-}
-
-canvas {
-    display:block;
 }
 
 .innerDiv{

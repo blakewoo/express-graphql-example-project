@@ -11,13 +11,15 @@ const typeDefs = `
         updateUser(updateValue: modifyUser): User
         deleteUser(deleteValue: deleteUser): Boolean
         planToUser(mappingValue: planWithUser): Boolean
+        verifyAdminUser(verifyTarget: IdAndPassword) : Boolean
+        adminUserInsertion(addAdminUser: adminUserData) : Boolean
     }
     
     type User {
         _id: ID!
         firstName: String!
         lastName: String!
-        email:String!
+        email: String!
         phoneNumber: String
         joinPath: String
         paymentPlan: paymentPlan
@@ -56,8 +58,19 @@ const typeDefs = `
     }
     
     input planWithUser{
-         email:String!
-         name: String!
+        email:String!
+        name: String!
+    }
+    
+    input IdAndPassword{
+        id:String!
+        password:String!
+    }
+    
+    input adminUserData{
+        Id: String!
+        Password: String!
+        Email: String!
     }
 `;
 

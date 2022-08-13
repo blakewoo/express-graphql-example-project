@@ -1,6 +1,8 @@
 let User = require('../model/accountInfo');
 let Plan = require('../model/paymentPlan');
 let Setting = require('../model/acocuntPaymentSetting')
+const mariaDB = require('../mariaDB_connection')
+
 
 const resolvers = {
     Query: {
@@ -97,6 +99,30 @@ const resolvers = {
                     await User.updateOne({email:mappingValue.email},{paymentPlan:planTarget._id,paymentSetting:newSetting._id})
                 }
                 return true
+            }
+            catch(e) {
+                console.log(e)
+                return false
+            }
+        },
+
+        async verifyAdminUser(root,{verifyTarget}) {
+            try{
+                let conn = await mariaDB.getConnection();
+                await conn.query('USE login')
+                const rows = await conn.query("SELECT * FROM login");
+                console.log(rows)
+                return true
+            }
+            catch(e) {
+                console.log(e)
+                return false
+            }
+        },
+
+        async adminUserInsertion(root,{adminUserData}) {
+            try{
+
             }
             catch(e) {
                 console.log(e)

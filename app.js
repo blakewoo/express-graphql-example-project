@@ -39,7 +39,6 @@ mongoose.connection.on('disconnected', function (err) {
   console.log(err)
 });
 
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

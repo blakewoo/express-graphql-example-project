@@ -15,6 +15,10 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+router.get('/signup', function(req, res, next) {
+  res.render('signup');
+});
+
 router.use('/user',graphqlHTTP({
   schema: userSchema,
   graphiql: false,
