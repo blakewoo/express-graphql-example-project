@@ -5,16 +5,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 function acceptButtonEvent(event) {
-    let userObj= {}
+    let userObj=  "Id:\""+document.getElementById("signupID").value+"\","+
+        "Password:\""+document.getElementById("signupPassword").value+"\""+
+        "Email:\""+document.getElementById("signupEmail").value+"\""
 
-    let signupQuery = `{
-        mutation {
-            adminUserInsertion(adminUserData:{`+userObj+`}
+    let signupQuery = `
+         mutation {
+            adminUserInsertion(addAdminUser:{`+userObj+`}
         )}
-    }
     `
 
-    mutationRequset("/user",signupQuery,function (value){
+    let jsonBody = {
+        "query": signupQuery,
+        "variables":null
+    }
+
+    mutationRequset("/user",jsonBody,function (value){
         if(value) {
             location.href = location.protocol+"//"+location.host+"/login"
         }

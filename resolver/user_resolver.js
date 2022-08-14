@@ -120,9 +120,27 @@ const resolvers = {
             }
         },
 
-        async adminUserInsertion(root,{adminUserData}) {
+        async adminUserInsertion(root,{addAdminUser}) {
             try{
+                let id = addAdminUser.Id
+                let password = addAdminUser.Password
+                let date = new Date()
+                let salt = "dfdfdfdf"
+                let conn = await mariaDB.getConnection();
+                await conn.query('USE login')
 
+                let priviousQuery = "SELECT * FROM login WHERE ID="+"\""+id+"\""
+                const priviousID = await conn.query(priviousQuery);
+                console.log(priviousID)
+                if(priviousID) {
+                    return false
+                }
+                else {
+
+                    let queryString = "INSERT INTO login (ID,PASSWORD,SALT,CREATEDATE) VALUES ("+id+","+password+","+salt+","+date+")"
+                    const rows = await conn.query(queryString);
+                    return true
+                }
             }
             catch(e) {
                 console.log(e)
