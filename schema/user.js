@@ -63,8 +63,8 @@ const typeDefs = `
     }
     
     input IdAndPassword{
-        id:String!
-        password:String!
+        Id:String!
+        Password:String!
     }
     
     input adminUserData{

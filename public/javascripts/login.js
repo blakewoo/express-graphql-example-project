@@ -1,13 +1,29 @@
 window.addEventListener('DOMContentLoaded', () => {
     matrixBackGround("background_matrix")
+
     document.getElementById("loginButton").addEventListener("click",loginButtonEvent)
     document.getElementById("signupButton").addEventListener("click",signupButtonEvent)
 })
 
 function loginButtonEvent(event) {
+    let inputId = document.getElementById("loginID").value.toString()
+    let inputPassword = document.getElementById("loginPassword").value.toString()
+
+
+    if(!inputId) {
+        toastMessage("simple","ID를 입력해주십시오",400,130)
+        return
+    }
+
+    if(!inputPassword) {
+        toastMessage("simple","PASSWORD를 입력해주십시오",400,130)
+        return
+    }
+
+
     let userObj = "" +
-        "id:\""+document.getElementById("loginID").value+"\","+
-        "password:\""+document.getElementById("loginPassword").value+"\""
+        "Id:\""+inputId+"\","+
+        "Password:\""+inputPassword+"\""
 
 
     let loginQuery = `
@@ -22,13 +38,12 @@ function loginButtonEvent(event) {
     }
 
     mutationRequset("/user",jsonBody,function (value){
-        // if(value) {
-        //     location.href = location.protocol+"//"+location.host+"/login"
-        // }
-        // else {
-        //     // 가입 안되었다고 알리는 알림!
-        // }
-        alert("verify response!")
+        if(value) {
+            location.href = location.protocol+"//"+location.host+"/login"
+        }
+        else {
+            // 가입 안되었다고 알리는 알림!
+        }
     })
 }
 

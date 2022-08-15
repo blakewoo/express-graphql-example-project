@@ -47,3 +47,45 @@ function mutationRequset(PATH,mutationData,callback) {
         return callback(value)
     })
 }
+
+function toastMessage(type,message,width=400,height=200) {
+    let html = document.getElementsByTagName("html")[0]
+
+    let toastMessageDiv = document.createElement("div")
+    toastMessageDiv.style.position = "absolute"
+    toastMessageDiv.style.width =width+"px"
+    toastMessageDiv.style.height =height+"px"
+    toastMessageDiv.style.top = "calc(50% - "+height/2+"px)"
+    toastMessageDiv.style.left = "calc(50% - "+width/2+"px)"
+    toastMessageDiv.style.border = "#10ff00 1px solid"
+    toastMessageDiv.style.background = "black"
+    toastMessageDiv.style.textAlign = "center"
+
+    if(type === "custom") {
+        toastMessageDiv.innerHTML = ""
+        html.appendChild(toastMessageDiv)
+    }
+    else if(type === "simple") {
+        let title = document.createElement("h2")
+        title.innerText=message
+        let closeButton = document.createElement("input")
+        closeButton.type="button"
+        closeButton.value="close"
+        closeButton.id="closeThisDiv"
+
+        toastMessageDiv.appendChild(title)
+        toastMessageDiv.appendChild(closeButton)
+        html.appendChild(toastMessageDiv)
+
+        document.getElementById("closeThisDiv").addEventListener("click",function (event) {
+            event.currentTarget.parentNode.remove()
+        })
+
+    }
+    else {
+        toastMessageDiv.innerHTML = ""
+        html.appendChild(toastMessageDiv)
+    }
+
+
+}

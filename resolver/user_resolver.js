@@ -2,7 +2,8 @@ let User = require('../model/accountInfo');
 let Plan = require('../model/paymentPlan');
 let Setting = require('../model/acocuntPaymentSetting')
 const mariaDB = require('../mariaDB_connection')
-
+const bcrypt = require('bcrypt')
+const config = require('../config')
 
 const resolvers = {
     Query: {
@@ -110,9 +111,16 @@ const resolvers = {
             try{
                 let conn = await mariaDB.getConnection();
                 await conn.query('USE login')
-                const rows = await conn.query("SELECT * FROM login");
-                console.log(rows)
-                return true
+                const rows = await conn.query(`SELECT * FROM login Where ID=?`,verifyTarget.Id);
+
+                let result = bcrypt.compareSync(verifyTarget.Password, rows[0].PASSWORD)
+
+                if(result) {
+                    return true
+                }
+                else {
+                    return false
+                }
             }
             catch(e) {
                 console.log(e)
@@ -123,22 +131,19 @@ const resolvers = {
         async adminUserInsertion(root,{addAdminUser}) {
             try{
                 let id = addAdminUser.Id
-                let password = addAdminUser.Password
-                let date = new Date()
-                let salt = "dfdfdfdf"
+                let date = new Date().toISOString().slice(0,19).split("T").join(" ")
+
                 let conn = await mariaDB.getConnection();
                 await conn.query('USE login')
 
                 let priviousQuery = "SELECT * FROM login WHERE ID="+"\""+id+"\""
                 const priviousID = await conn.query(priviousQuery);
-                console.log(priviousID)
-                if(priviousID) {
+                if(priviousID[0]) {
                     return false
                 }
                 else {
-
-                    let queryString = "INSERT INTO login (ID,PASSWORD,SALT,CREATEDATE) VALUES ("+id+","+password+","+salt+","+date+")"
-                    const rows = await conn.query(queryString);
+                    let hash = bcrypt.hashSync(addAdminUser.Password, config.saltRound)
+                    await conn.query("INSERT INTO login (ID,PASSWORD,EMAIL,CREATEDATE) VALUES (?,?,?,?)",[id,hash,addAdminUser.Email,date]);
                     return true
                 }
             }
@@ -147,7 +152,6 @@ const resolvers = {
                 return false
             }
         }
-
     }
 }
 

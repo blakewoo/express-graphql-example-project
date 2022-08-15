@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 let mongoose = require("mongoose")
 let config = require('./config.js')
+let mariaDB = require('./mariaDB_connection')
+
 
 var app = express();
 
@@ -31,12 +33,22 @@ app.use(function(req, res, next) {
 mongoose.connect("mongodb://"+config.database.address)
 
 mongoose.connection.on('connected', function () {
-  console.log("DB connect")
+  console.log("Mongo DB connected")
 });
 
 mongoose.connection.on('disconnected', function (err) {
-  console.log("mongoose disconnected")
+  console.log("Mongo DB disconnected")
   console.log(err)
+});
+
+mariaDB.getConnection()
+.then(conn => {
+  console.log("Maria DB connected");
+  conn.release(); //release to pool
+})
+.catch(err => {
+  console.log(err)
+  console.log("Maria DB disconnected");
 });
 
 // error handler
