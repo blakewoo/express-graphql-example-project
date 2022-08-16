@@ -107,15 +107,26 @@ const resolvers = {
             }
         },
 
-        async verifyAdminUser(root,{verifyTarget}) {
+        async verifyAdminUser(root,{verifyTarget},req) {
             try{
+                if(verifyTarget.Id === null) {
+                    return false
+                }
+
+                if(verifyTarget.Password === null) {
+                    return false
+                }
+
                 let conn = await mariaDB.getConnection();
                 await conn.query('USE login')
                 const rows = await conn.query(`SELECT * FROM login Where ID=?`,verifyTarget.Id);
-
-                let result = bcrypt.compareSync(verifyTarget.Password, rows[0].PASSWORD)
+                let result = null
+                if(rows[0]) {
+                    result = bcrypt.compareSync(verifyTarget.Password, rows[0].PASSWORD)
+                }
 
                 if(result) {
+                    req.session.isLogin = true
                     return true
                 }
                 else {

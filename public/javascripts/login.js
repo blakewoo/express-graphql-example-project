@@ -38,11 +38,12 @@ function loginButtonEvent(event) {
     }
 
     mutationRequset("/user",jsonBody,function (value){
-        if(value) {
-            location.href = location.protocol+"//"+location.host+"/login"
+        let result = JSON.parse(value)
+        if(result.data.verifyAdminUser === true) {
+            location.href = location.protocol+"//"+location.host+"/"
         }
         else {
-            // 가입 안되었다고 알리는 알림!
+            toastMessage("simple","ID or password is invalid",400,120)
         }
     })
 }

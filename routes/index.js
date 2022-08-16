@@ -8,11 +8,22 @@ var paymentSchema = require('../schema/paymentPlan')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  if(req.session.isLogin) {
+    res.render('index', { title: 'Express' });
+  }
+  else {
+    res.redirect("/login")
+  }
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login');
+  if(req.session.isLogin) {
+    res.redirect("/")
+  }
+  else {
+    res.render('login');
+  }
+
 });
 
 router.get('/signup', function(req, res, next) {

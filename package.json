@@ -12,11 +12,13 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-graphql": "^0.12.0",
+    "express-session": "^1.17.3",
     "graphql": "^16.5.0",
     "graphql-tools": "^8.3.0",
     "http-errors": "~1.6.3",
     "mariadb": "^3.0.1",
-    "mongoose": "^6.4.2",
+    "memorystore": "^1.6.7",
+    "mongoose": "^6.5.2",
     "morgan": "~1.9.1"
   }
 }
