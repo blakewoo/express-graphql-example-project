@@ -30,6 +30,11 @@ router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
 
+router.get('/logout', function(req, res, next) {
+  req.session.isLogin = null
+  res.redirect("/")
+});
+
 router.use('/user',graphqlHTTP({
   schema: userSchema,
   graphiql: false,

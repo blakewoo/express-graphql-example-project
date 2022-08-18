@@ -1,5 +1,9 @@
 window.addEventListener('DOMContentLoaded', () => {
 
+    document.getElementById("logoutButton").addEventListener("click",function (event){
+        location.href = location.protocol+"//"+location.host+"/logout"
+    })
+
     document.getElementById("submit").addEventListener("click",function (event) {
         let data = document.getElementById("query_area").value
         let reg= new RegExp('mutation')
