@@ -1,5 +1,29 @@
 window.addEventListener('DOMContentLoaded', () => {
 
+    document.getElementById("totalTab").addEventListener("click",function (event){
+        document.getElementById("testQuery").style.display = "block";
+        document.getElementById("userQuery").style.display = "block";
+        document.getElementById("paymentPlanQuery").style.display = "block";
+
+    })
+
+    document.getElementById("testTab").addEventListener("click",function (event){
+        document.getElementById("testQuery").style.display = "block";
+        document.getElementById("userQuery").style.display = "none";
+        document.getElementById("paymentPlanQuery").style.display = "none";
+    })
+    document.getElementById("userTab").addEventListener("click",function (event){
+        document.getElementById("testQuery").style.display = "none";
+        document.getElementById("userQuery").style.display = "block";
+        document.getElementById("paymentPlanQuery").style.display = "none";
+    })
+    document.getElementById("paymentPlanTab").addEventListener("click",function (event){
+        document.getElementById("testQuery").style.display = "none";
+        document.getElementById("userQuery").style.display = "none";
+        document.getElementById("paymentPlanQuery").style.display = "block";
+    })
+
+
     document.getElementById("logoutButton").addEventListener("click",function (event){
         requestFunction("GET","/logout",null,function (data) {
             location.replace(location.protocol+"//"+location.host+"/")

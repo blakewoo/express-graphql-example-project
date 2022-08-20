@@ -78,3 +78,29 @@ select{
   border-right: none;
   border-bottom: solid 1px #10ff00;
 }
+
+.tabSelect {
+  padding: 15px 10px;
+}
+.tabSelect input[type=radio]{
+  display: none;
+}
+.tabSelect input[type=radio]+label{
+  display: inline-block;
+  cursor: pointer;
+  height: 24px;
+  width: 90px;
+  border: 1px solid #10ff00;
+  line-height: 24px;
+  text-align: center;
+  font-weight:bold;
+  font-size:13px;
+}
+.tabSelect input[type=radio]+label{
+  background-color: black;
+  color: #10ff00;
+}
+.tabSelect input[type=radio]:checked+label{
+  background-color: #10ff00;
+  color: black;
+}

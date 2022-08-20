@@ -14,13 +14,28 @@
       <label>쿼리 테스트용 예제 프로젝트</label>
     </div>
     <br>
-    <label>쿼리 입력 창</label>
-    <input type="button" id="submit" value="테스트"/>
-    <br>
-    <textarea id="query_area"></textarea>
-    <textarea readonly id="result"> </textarea>
+  </div>
 
-  </div>  <br>
+  <div class="tabSelect">
+    <input type="radio" id="totalTab" name="tabs" checked="checked"><label for="totalTab">전체</label>
+    <input type="radio" id="testTab" name="tabs"><label for="testTab">테스트 쿼리</label>
+    <input type="radio" id="userTab" name="tabs"><label for="userTab">사용자</label>
+    <input type="radio" id="paymentPlanTab" name="tabs"><label for="paymentPlanTab">요금제</label>
+  </div>
+
+  <div id="testQuery">
+  <!--  전체 쿼리 테스트 창  -->
+  <label>쿼리 입력 창</label>
+  <input type="button" id="submit" value="테스트"/>
+  <br>
+  <textarea id="query_area"></textarea>
+  <textarea readonly id="result"> </textarea>
+
+  </div>
+  <br>
+  <br>
+
+  <div id="userQuery">
 <!-- 사용자 조회 부분-->
   <div class="functionDivider">
     <label>사용자 목록</label> <input type="button" id="userReadRenewButton" value="새로 고침"> <br>
@@ -72,6 +87,9 @@
     <label>이메일</label>
     <input id="delete_email">
   </div>
+  </div>
+
+  <div id="paymentPlanQuery">
   <!-- 요금제 불러오기 -->
   <div class="functionDivider">
     <label>요금제 목록</label> <input type="button" id="paymentPlanReadRenewButton" value="새로 고침"> <br>
@@ -159,6 +177,7 @@
     <input id="pointTargetUserEmail">
     <label>지정할 요금제</label>
     <input id="pointTargetPlanName">
+  </div>
   </div>
   </body>
 </html>
