@@ -32,7 +32,7 @@ router.get('/signup', function(req, res, next) {
 
 router.get('/logout', function(req, res, next) {
   req.session.isLogin = null
-  res.redirect("/")
+  res.send(true)
 });
 
 router.use('/user',graphqlHTTP({

@@ -1,7 +1,9 @@
 window.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("logoutButton").addEventListener("click",function (event){
-        location.href = location.protocol+"//"+location.host+"/logout"
+        requestFunction("GET","/logout",null,function (data) {
+            location.replace(location.protocol+"//"+location.host+"/")
+        })
     })
 
     document.getElementById("submit").addEventListener("click",function (event) {

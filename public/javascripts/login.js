@@ -40,7 +40,7 @@ function loginButtonEvent(event) {
     mutationRequset("/user",jsonBody,function (value){
         let result = JSON.parse(value)
         if(result.data.verifyAdminUser === true) {
-            location.href = location.protocol+"//"+location.host+"/"
+            location.replace(location.protocol+"//"+location.host+"/")
         }
         else {
             toastMessage("simple","ID or password is invalid",400,120)
