@@ -37,7 +37,7 @@ function loginButtonEvent(event) {
         "variables":null
     }
 
-    mutationRequset("/user",jsonBody,function (value){
+    mutationRequset("/loginuser",jsonBody,function (value){
         let result = JSON.parse(value)
         if(result.data.verifyAdminUser === true) {
             location.replace(location.protocol+"//"+location.host+"/")

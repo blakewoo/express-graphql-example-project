@@ -11,8 +11,6 @@ const typeDefs = `
         updateUser(updateValue: modifyUser): User
         deleteUser(deleteValue: deleteUser): Boolean
         planToUser(mappingValue: planWithUser): Boolean
-        verifyAdminUser(verifyTarget: IdAndPassword) : Boolean
-        adminUserInsertion(addAdminUser: adminUserData) : Boolean
     }
     
     type User {
@@ -60,17 +58,6 @@ const typeDefs = `
     input planWithUser{
         email:String!
         name: String!
-    }
-    
-    input IdAndPassword{
-        Id:String!
-        Password:String!
-    }
-    
-    input adminUserData{
-        Id: String!
-        Password: String!
-        Email: String!
     }
 `;
 

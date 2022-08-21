@@ -1,10 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var {graphqlHTTP} = require('express-graphql');
-var { buildSchema } = require('graphql');
-var testSchema = require('../schema/test')
-var userSchema = require('../schema/user')
-var paymentSchema = require('../schema/paymentPlan')
+let express = require('express');
+let router = express.Router();
+let {graphqlHTTP} = require('express-graphql');
+let testSchema = require('../schema/test')
+let userSchema = require('../schema/user')
+let loginSchema = require('../schema/login')
+let paymentSchema = require('../schema/paymentPlan')
+let verifySession = require("../module/authorization")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -35,17 +36,22 @@ router.get('/logout', function(req, res, next) {
   res.send(true)
 });
 
-router.use('/user',graphqlHTTP({
+router.use('/loginuser',graphqlHTTP({
+  schema: loginSchema,
+  graphiql: false,
+}))
+
+router.use('/user',verifySession.sessionVerify,graphqlHTTP({
   schema: userSchema,
   graphiql: false,
 }))
 
-router.use('/paymentPlan',graphqlHTTP({
+router.use('/paymentPlan',verifySession.sessionVerify,graphqlHTTP({
   schema: paymentSchema,
   graphiql: false,
 }))
 
-router.use('/test',graphqlHTTP({
+router.use('/test',verifySession.sessionVerify,graphqlHTTP({
   schema: testSchema,
   graphiql: false,
 }))
