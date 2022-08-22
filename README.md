@@ -12,3 +12,13 @@
 - 요금제 수정
 - 요금제 삭제
 - 사용자 - 요금제 매핑
+
+## 기술 스택
+
+- Node js Express
+- EJS   
+- Javascript    
+- CSS  
+- Graph QL   
+- Mongo DB   
+- Maria DB
