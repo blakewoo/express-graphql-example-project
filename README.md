@@ -22,3 +22,8 @@
 - Graph QL   
 - Mongo DB   
 - Maria DB
+
+
+## 개발 사유   
+- Graph QL의 숙달
+- SQL인 Maria DB와 NoSQL인 MongoDB를 동시에 사용한 하이브리드 서비스 구축 예제
