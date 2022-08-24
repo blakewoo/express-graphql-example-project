@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById("testQuery").style.display = "block";
         document.getElementById("userQuery").style.display = "block";
         document.getElementById("paymentPlanQuery").style.display = "block";
+        document.getElementById("fileUploadQuery").style.display="block"
 
     })
 
@@ -11,18 +12,26 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById("testQuery").style.display = "block";
         document.getElementById("userQuery").style.display = "none";
         document.getElementById("paymentPlanQuery").style.display = "none";
+        document.getElementById("fileUploadQuery").style.display="none"
     })
     document.getElementById("userTab").addEventListener("click",function (event){
         document.getElementById("testQuery").style.display = "none";
         document.getElementById("userQuery").style.display = "block";
         document.getElementById("paymentPlanQuery").style.display = "none";
+        document.getElementById("fileUploadQuery").style.display="none"
     })
     document.getElementById("paymentPlanTab").addEventListener("click",function (event){
         document.getElementById("testQuery").style.display = "none";
         document.getElementById("userQuery").style.display = "none";
         document.getElementById("paymentPlanQuery").style.display = "block";
+        document.getElementById("fileUploadQuery").style.display="none"
     })
-
+    document.getElementById("fileuploadTab").addEventListener("click",function (event){
+        document.getElementById("testQuery").style.display = "none";
+        document.getElementById("userQuery").style.display = "none";
+        document.getElementById("paymentPlanQuery").style.display = "none";
+        document.getElementById("fileUploadQuery").style.display="block"
+    })
 
     document.getElementById("logoutButton").addEventListener("click",function (event){
         requestFunction("GET","/logout",null,function (data) {

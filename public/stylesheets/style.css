@@ -104,3 +104,35 @@ select{
   background-color: #10ff00;
   color: black;
 }
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #10ff00;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: black;
+  cursor: pointer;
+  border: 1px solid #10ff00;
+  border-radius: .25em;
+}
+
+.filebox label:hover {
+  cursor: pointer;
+  background: #10ff00;
+  color: black;
+  font-weight: bold;
+}
+
+.filebox input[type="file"] {
+  /*position: absolute;*/
+  /*width: 1px;*/
+  /*height: 1px;*/
+  /*padding: 0;*/
+  /*margin: -1px;*/
+  /*overflow: hidden;*/
+  /*clip:rect(0,0,0,0);*/
+  /*border: 0;*/
+  display: none;
+}
