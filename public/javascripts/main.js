@@ -39,6 +39,24 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    //파일 업로드
+    const fileInput = document.getElementById("fileUpload");
+
+    const handleFiles = (e) => {
+        const selectedFile = [...fileInput.files];
+        const fileReader = new FileReader();
+
+        fileReader.readAsDataURL(selectedFile[0]);
+
+        fileReader.onload = function () {
+            document.getElementById("previewFileName").innerText = selectedFile[0].name;
+        };
+    };
+
+    fileInput.addEventListener("change", handleFiles);
+
+
+    // 쿼리 요청 버튼
     document.getElementById("submit").addEventListener("click",function (event) {
         let data = document.getElementById("query_area").value
         let reg= new RegExp('mutation')
