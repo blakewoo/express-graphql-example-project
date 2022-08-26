@@ -1,4 +1,4 @@
-function requestFunction(method_type,url,send_data,callback) {
+function requestFunction(method_type,url,send_data,callback,ContentType="application/json") {
     let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
@@ -21,13 +21,20 @@ function requestFunction(method_type,url,send_data,callback) {
         else {
             xhr.open(method_type,url);
         }
-        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Content-Type', ContentType);
         xhr.send();
     }
     else {
-        xhr.open(method_type,url);
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
-        xhr.send(JSON.stringify(sender));
+        if(ContentType === "multipart/form-data") {
+            xhr.open(method_type,url);
+            // xhr.setRequestHeader('Content-Type', ContentType);
+            xhr.send(sender);
+        }
+        else {
+            xhr.open(method_type,url);
+            xhr.setRequestHeader('Content-Type', ContentType);
+            xhr.send(JSON.stringify(sender));
+        }
     }
 }
 

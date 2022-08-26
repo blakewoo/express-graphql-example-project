@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-
+    let formData = new FormData();
     document.getElementById("totalTab").addEventListener("click",function (event){
         document.getElementById("testQuery").style.display = "block";
         document.getElementById("userQuery").style.display = "block";
@@ -49,12 +49,20 @@ window.addEventListener('DOMContentLoaded', () => {
         fileReader.readAsDataURL(selectedFile[0]);
 
         fileReader.onload = function () {
+
+            formData.append('files', selectedFile[0]);
+
             document.getElementById("previewFileName").innerText = selectedFile[0].name;
         };
     };
 
     fileInput.addEventListener("change", handleFiles);
 
+    document.getElementById("uploadButton").addEventListener("click",function (event) {
+        requestFunction("POST","fileUpload",formData,function (res) {
+            toastMessage("simple","파일 업로드 완료")
+        },"multipart/form-data")
+    })
 
     // 쿼리 요청 버튼
     document.getElementById("submit").addEventListener("click",function (event) {
