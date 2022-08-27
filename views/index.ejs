@@ -182,10 +182,12 @@
   </div>
   <div id="fileUploadQuery">
     <div class="filebox">
-      <span id="previewFileName"></span>
-      <label for="fileUpload">파일 찾기</label>
-      <input type="file" id="fileUpload" name="uploadFile" />
-      <input type="button" value="업로드" id="uploadButton">
+      <form id="formData" enctype="multipart/form-data" method="post">
+        <span id="previewFileName"></span>
+        <label for="fileUpload">파일 찾기</label>
+        <input type="file" id="fileUpload" name="uploadFile" />
+        <input type="button" id="uploadButton">Upload</input>
+      </form>
     </div>
   </div>
   </body>

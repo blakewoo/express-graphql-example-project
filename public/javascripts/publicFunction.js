@@ -25,18 +25,32 @@ function requestFunction(method_type,url,send_data,callback,ContentType="applica
         xhr.send();
     }
     else {
-        if(ContentType === "multipart/form-data") {
-            xhr.open(method_type,url);
-            // xhr.setRequestHeader('Content-Type', ContentType);
-            xhr.send(sender);
-        }
-        else {
-            xhr.open(method_type,url);
-            xhr.setRequestHeader('Content-Type', ContentType);
-            xhr.send(JSON.stringify(sender));
-        }
+        xhr.open(method_type,url);
+        xhr.setRequestHeader('Content-Type', ContentType);
+        xhr.send(JSON.stringify(sender));
     }
 }
+
+function requestFormData(method_type,url,send_data,callback) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200 || xhr.status === 201) {
+                callback(xhr.responseText);
+            }
+            else {
+                console.error(xhr.responseText);
+            }
+        }
+    }
+
+    let sender = send_data;
+
+    xhr.open(method_type,url);
+    xhr.send(sender);
+}
+
 
 function queryRequest(PATH,queryData,callback) {
     let target = null

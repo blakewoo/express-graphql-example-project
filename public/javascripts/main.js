@@ -59,9 +59,11 @@ window.addEventListener('DOMContentLoaded', () => {
     fileInput.addEventListener("change", handleFiles);
 
     document.getElementById("uploadButton").addEventListener("click",function (event) {
-        requestFunction("POST","fileUpload",formData,function (res) {
+        let formElement = document.getElementById("formData")
+        var formdata = new FormData(formElement);
+        requestFormData("POST","/fileUpload",formdata,function () {
             toastMessage("simple","파일 업로드 완료")
-        },"multipart/form-data")
+        })
     })
 
     // 쿼리 요청 버튼
