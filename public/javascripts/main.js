@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    let formData = new FormData();
+
     document.getElementById("totalTab").addEventListener("click",function (event){
         document.getElementById("testQuery").style.display = "block";
         document.getElementById("userQuery").style.display = "block";
@@ -40,23 +40,16 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     //파일 업로드
-    const fileInput = document.getElementById("fileUpload");
-
-    const handleFiles = (e) => {
-        const selectedFile = [...fileInput.files];
+    document.getElementById("fileUpload").addEventListener("change", function (event) {
+        const selectedFile = [...event.currentTarget.files];
         const fileReader = new FileReader();
 
         fileReader.readAsDataURL(selectedFile[0]);
 
         fileReader.onload = function () {
-
-            formData.append('files', selectedFile[0]);
-
             document.getElementById("previewFileName").innerText = selectedFile[0].name;
         };
-    };
-
-    fileInput.addEventListener("change", handleFiles);
+    });
 
     document.getElementById("uploadButton").addEventListener("click",function (event) {
         let formElement = document.getElementById("formData")
