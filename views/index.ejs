@@ -4,6 +4,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/javascripts/publicFunction.js"></script>
     <script src="/javascripts/main.js"></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
   </head>
   <body>
   <div style="float: right">
@@ -186,7 +187,16 @@
         <span id="previewFileName"></span>
         <label for="fileUpload">파일 찾기</label>
         <input type="file" id="fileUpload" name="uploadFile" />
-        <input type="button" id="uploadButton">Upload</input>
+        <input type="button" id="uploadButton" value="upload">
+      </form>
+    </div>
+
+    <div id="graphqlFileUpload">
+      <form id="socketForm" enctype="multipart/form-data">
+        <span id="socketPreviewFileName"></span>
+        <label for="socketFileUpload">파일 찾기</label>
+        <input type="file" id="socketFileUpload" name="socketUploadFile" />
+        <input type="button" id="socketUploadButton" value="upload">
       </form>
     </div>
   </div>

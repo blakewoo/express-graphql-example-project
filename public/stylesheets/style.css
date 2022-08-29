@@ -148,3 +148,7 @@ select{
   border-bottom: 1px solid #10ff00;
   display: inline-block;
 }
+
+#uploadButton{
+  width: 100px;
+}

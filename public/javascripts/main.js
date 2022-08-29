@@ -59,6 +59,29 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+
+    //소켓을 통한 파일 업로드
+    document.getElementById("socketFileUpload").addEventListener("change", function (event) {
+        const selectedFile = [...event.currentTarget.files];
+        const fileReader = new FileReader();
+
+        fileReader.readAsDataURL(selectedFile[0]);
+
+        fileReader.onload = function () {
+            document.getElementById("socketPreviewFileName").innerText = selectedFile[0].name;
+        };
+    });
+
+    document.getElementById("socketUploadButton").addEventListener("click",function (event) {
+        const socket = io("ws://localhost:3000");
+
+        socket.emit("fileUpload", {
+            dd:"ssss"
+        });
+
+    })
+
+
     // 쿼리 요청 버튼
     document.getElementById("submit").addEventListener("click",function (event) {
         let data = document.getElementById("query_area").value

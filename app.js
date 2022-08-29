@@ -11,6 +11,7 @@ let mariaDB = require('./mariaDB_connection')
 
 const session = require('express-session')
 const MemoryStore = require('memorystore')(session)
+const socketSession = require("./socketSession/socketServer")
 
 var app = express();
 
@@ -35,6 +36,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,6 +65,9 @@ mariaDB.getConnection()
   console.log(err)
   console.log("Maria DB disconnected");
 });
+
+socketSession.createServer();
+
 
 // error handler
 app.use(function(err, req, res, next) {
